@@ -23,21 +23,21 @@ for ($i = 0; $i < $totalrows; $i++) {
     $laptop = $db->query('SELECT * FROM laptop where id = :id', [
         'id' => $i
     ])->findOrFail();
+    if ($laptop['admin'] == 1) {
+        $laptops[] = $laptop;
 
-    $laptops[] = $laptop;
+    }
 
     $link = $db->query('SELECT id FROM laptop where id = :id', [
-        'id' => $i
-    ])->findOrFail();
+            'id' => $i
+        ])->findOrFail();
+
 
     $LINKS[] = $link;
     $links[] = $LINKS[$i]['id'];
 }
 
 
-echo '<pre>';
-var_dump($links);
-echo '</pre>';
 
-require '../view/laptops.view.php';
+require '../view/laptops/laptops.view.php';
 

@@ -19,7 +19,7 @@ class Database
     }
     public function abort()
     {
-        return 'error';
+        header('Location: ../view/404.php');
     }
 
     public function query($query, $params = [])
@@ -46,8 +46,7 @@ class Database
         $result = $this->find();
 
         if (! $result) {
-//            $this->abort();
-            echo 'have problem';
+            $this->abort();
             die();
         }
 
